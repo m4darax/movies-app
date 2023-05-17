@@ -1,24 +1,20 @@
-import { useReducer } from "react";
-import { moviesReducers } from "../reducers/moviesReducers";
+import { useDispatch, useSelector } from "react-redux";
 import { findAll } from "../services/moviesService";
+import { onLoadMovies } from "../store/movies/moviesSlice";
 
-const initialMovies = [];
 export const useMovies = () => {
 
-    const [movies, dispatch] = useReducer(moviesReducers, initialMovies)
+    const { movies } = useSelector( state => state.movies)
+    const dispatch = useDispatch();
 
     const getMovies = async () => {
         const result = await findAll();
-        console.log(result)
-        dispatch({
-            type: 'loadMovies',
-            payload: result.data
-        })
+        dispatch(onLoadMovies(result.data))
+        console.log('getmovies')
     }
 
     return {
         movies,
         getMovies
     }
-  
 }

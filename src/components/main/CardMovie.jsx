@@ -1,13 +1,9 @@
-import { useContext, useEffect } from "react";
-import { MoviesContext } from "../../context/MoviesContext";
+import { CardRow } from "./CardRow";
+import { useMovies } from "../../hooks/useMovies";
 
 export const CardMovie = () => {
 
-    const { movies = [] } = useContext(MoviesContext)
-
-    useEffect(() => {
-        console.log('CardMovie = ' + JSON.stringify(movies) )
-    }, [])
+    const { movies = [] } = useMovies()
 
     return (
         <>
@@ -16,9 +12,7 @@ export const CardMovie = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6 my-3">
                     {
                         movies.map((movie) => (
-                            <div key={movie.id}>
-                                <img className="h-80 max-w-full rounded-lg" src={movie.url_from_page} alt="" />
-                            </div>
+                            <CardRow key={movie.id} movie={movie}/>
                         ))
                     }
                 </div>
