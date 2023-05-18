@@ -1,24 +1,25 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useMovies } from "../../hooks/useMovies";
 
 export const BodyMovie = () => {
-  const { movies = [], getMovies } = useMovies();
-  const [ movie, setMovie ] = useState({});
+  const { movies = [], movie, getMovies, handlerMovieSelectBody } = useMovies();
   const { qualification } = useParams();
+
 
   useEffect(() => {
     if (movies.length === 0) {
       getMovies();
     } else {
       const movie = movies.find((movie) => movie.qualification == qualification );
-      setMovie(movie);
+      console.log(movie)
+      handlerMovieSelectBody(movie);
     }
   }, [qualification, movies, getMovies]);
 
 
   if (movies.length === 0 || !movie) {
-    return null; // O muestra un spinner de carga mientras se obtienen las películas
+    return; // O muestra un spinner de carga mientras se obtienen las películas
   }
 
   return (

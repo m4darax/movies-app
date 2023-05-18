@@ -13,7 +13,10 @@ export const MoviePage = () => {
   return (
     <>
       {
-        movies.length > 0 ? ( <><CardMovie /></>  ) 
+        movies.length > 0 ? (
+          <>
+            <CardMovie />
+          </>  )
           :
           <div className="bg-red-500 text-white">
             No hay peliculas para mostrar

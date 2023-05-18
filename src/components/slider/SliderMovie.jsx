@@ -3,7 +3,7 @@ import 'flowbite';
 export const SliderMovie = () => {
     return (
         <>
-        <div className='container sm:container mx-auto'>
+        <div className='container sm:container mx-auto my-3'>
         <div id="gallery" className="relative w-full" data-carousel="slide">
                 <div className="relative h-56 overflow-hidden rounded-lg md:h-96">
 

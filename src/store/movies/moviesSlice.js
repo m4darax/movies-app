@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 export const moviesSlice = createSlice({
     name: 'movies',
     initialState: {
-        movies : []
+        movies : [],
+        movie : {}
     },
     reducers: {
         onLoadMovies: (state , action ) => {
@@ -11,11 +12,15 @@ export const moviesSlice = createSlice({
         },
         onFilterGender: ( state, action ) => {
             state.movies = state.movies.filter( movie => movie.genders.some( gender => gender.id == action.payload ))
+        },
+        onMovieSelectBody: ( state, action ) => {
+            state.movie = action.payload
         }
     }
 })
 
 export const {
     onLoadMovies,
-    onFilterGender
+    onFilterGender,
+    onMovieSelectBody
 } = moviesSlice.actions
