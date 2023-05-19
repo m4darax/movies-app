@@ -4,7 +4,8 @@ export const moviesSlice = createSlice({
     name: 'movies',
     initialState: {
         movies : [],
-        movie : {}
+        movie : {},
+        searchMovie: []
     },
     reducers: {
         onLoadMovies: (state , action ) => {
@@ -15,6 +16,10 @@ export const moviesSlice = createSlice({
         },
         onMovieSelectBody: ( state, action ) => {
             state.movie = action.payload
+        },
+        onSearchMovie: ( state, action ) => {
+            console.log(state.movies)
+            state.searchMovie = state.movies.filter( movie => movie.qualification.toLowerCase().includes(action.payload.toLowerCase()))
         }
     }
 })
@@ -22,5 +27,6 @@ export const moviesSlice = createSlice({
 export const {
     onLoadMovies,
     onFilterGender,
-    onMovieSelectBody
+    onMovieSelectBody,
+    onSearchMovie
 } = moviesSlice.actions

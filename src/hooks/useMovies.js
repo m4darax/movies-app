@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { findAll } from "../services/moviesService";
-import { onLoadMovies, onMovieSelectBody } from "../store/movies/moviesSlice";
+import { onLoadMovies, onMovieSelectBody, onSearchMovie } from "../store/movies/moviesSlice";
 
 export const useMovies = () => {
 
-    const { movies, movie } = useSelector( state => state.movies)
+    const { movies, movie, searchMovie } = useSelector( state => state.movies)
     const dispatch = useDispatch();
 
     const getMovies = async () => {
@@ -16,10 +16,16 @@ export const useMovies = () => {
         dispatch(onMovieSelectBody(movie))
     }
 
+    const handlerSearchMovie = async (search) => {
+        dispatch(onSearchMovie(search))
+    }
+
     return {
         movies,
         movie,
+        searchMovie,
         getMovies,
-        handlerMovieSelectBody
+        handlerMovieSelectBody,
+        handlerSearchMovie
     }
 }
